@@ -64,12 +64,18 @@ An example:
 
 ```json
 {
-    "if_directory_empty": "download_from_4_days",
     "podcasts": [
         {
             "name": "The Skeptic Guide",
             "rss_link": "http://www.theskepticsguide.org/feed/rss.aspx",
-            "path": "~/podcasts/SGTTU"
+            "path": "~/podcasts/SGTTU",
+            "if_directory_empty": "download_from_4_days"
+        },
+        {
+            "name": "Another Podcast",
+            "rss_link": "http://www.anotherpodcast.org/feed/rss.aspx",
+            "path": "~/podcasts/Another Podcast",
+            "if_directory_empty": "download_last"
         }
     ]
 }
