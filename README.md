@@ -41,7 +41,6 @@ The script accept following command line arguments:
 | Short version | Long name              | Parameter           | Default         | Note |
 |:--------------|:-----------------------|:-------------------:|:---------------:|:-----|
 |               | `--downloads_limit`    | number              | inifinity       | The maximum number of downloaded mp3 files |
-|               | `--if_directory_empty` | string              | `download_last` | The general approach on empty directory' |
 
 ## Configuration hierarchy
 
@@ -59,6 +58,7 @@ Those will be cover by all values given by command line.
 | `path`         | string  | yes      | -       | The path to directory, for podcast files |
 | `require_date` | boolean | no       | `false` | Is date of podcast should be added into name of file |
 | `disable`      | boolean | no       | `false` | This podcast will be ignored |
+| `if_directory_empty`      | string | no       | `download_last` | How many episodes to donwload if directory is empty |
 
 An example:
 
