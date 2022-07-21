@@ -44,8 +44,8 @@ def build_parser():
     return parser
 
 
-def configuration_to_function(configuration: dict):
-    configuration_value = configuration['if_directory_empty']
+def configuration_to_function(if_dir_empty):
+    configuration_value = if_dir_empty
 
     if configuration_value == 'download_last':
         return only_last_entity
@@ -67,7 +67,7 @@ if __name__ == '__main__':
         'podcasts': [],
     }
 
-    CONFIG_FILE = '~/.podcast_downloader_config.json'
+    CONFIG_FILE = '.podcast_downloader_config.json'
     log('Loading configuration (from file: "{}")', CONFIG_FILE)
 
     CONFIGURATION = merge_parameters_collection(
@@ -79,7 +79,7 @@ if __name__ == '__main__':
     RSS_SOURCES = CONFIGURATION['podcasts']
     DOWNLOADS_LIMITS = CONFIGURATION['downloads_limit']
 
-    on_directory_empty = configuration_to_function(CONFIGURATION)
+    # on_directory_empty = configuration_to_function(CONFIGURATION)
 
     for rss_source in RSS_SOURCES:
         rss_source_name = rss_source['name']
@@ -87,6 +87,9 @@ if __name__ == '__main__':
         rss_source_link = rss_source['rss_link']
         rss_require_date = rss_source.get('require_date', False)
         rss_disable = rss_source.get('disable', False)
+        rss_if_dir_empty = rss_source.get('if_directory_empty', CONFIGURATION['if_directory_empty'])
+
+        on_directory_empty = configuration_to_function(rss_if_dir_empty)
 
         if rss_disable:
             log('Skipping the "{}"', rss_source_name)
